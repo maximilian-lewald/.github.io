@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximilian Lewald</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /*
+        * 1. Allgemeine Stile und Typografie (Dark Mode Variablen)
+        */
+        :root {
+            /* DARK MODE FARBEN */
+            --background-start: #1c1c1e; /* Sehr dunkler Hintergrund */
+            --background-end: #2c2c2e;
+            --card-color: rgba(60, 60, 60, 0.4); /* Dunkel, semi-transparent */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-color: #f0f0f0; /* Helle Textfarbe */
+            --link-color: #0a84ff; /* Apple's Dark Mode Blau (heller) */
+            
+            /* Schatten (innen & außen für Tiefe im dunklen Modus) */
+            --shadow-light: 0 0 15px rgba(255, 255, 255, 0.05);
+            --shadow-dark: 0 4px 30px rgba(0, 0, 0, 0.5);
+            
+            --blur-amount: 15px; /* Etwas stärkerer Blur für den Dark Mode */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            
+            /* --- HINTERGRUND-BILD EINSTELLUNGEN --- */
+            /* Der erste Teil (rgba) dunkelt das Bild um 40% ab, damit der Text lesbar bleibt */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(heart_nebula.jpeg);
+            
+            /* Bild deckt den ganzen Schirm ab */
+            background-size: cover;
+            /* Bild zentrieren */
+            background-position: center;
+            /* Bild bleibt stehen beim Scrollen (Parallax-Effekt) */
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* -------------------------------------- */
+
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        /*
+        * 2. Liquid Glass Card (Glassmorphismus)
+        */
+        .profile-card {
+            background: var(--card-color);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-dark); /* Großer dunkler Schatten außen */
+            backdrop-filter: blur(var(--blur-amount)); 
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7); /* Intensiverer Schatten beim Hover */
+        }
+
+        /*
+        * 3. Inhalt und Layout
+        */
+       .profile-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            background-color: #333333; 
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.05);
+            display: block;
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+            color: var(--text-color);
+        }
+
+        p {
+            font-weight: 300;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #b0b0b0; /* Etwas dunkler als H1 */
+        }
+
+        /*
+        * 4. Link-Buttons (Dark Liquid Glass Buttons)
+        */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-button {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1em;
+            border-radius: 12px;
+            color: var(--link-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+            /* Dark Glassmorphismus Stil für Buttons */
+            background: rgba(255, 255, 255, 0.05); /* Sehr dezenter Hintergrund */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .link-button i {
+            margin-right: 10px;
+            width: 20px; 
+            text-align: center;
+        }
+
+        .link-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
+            color: #3bb4ff; /* Helleres Blau beim Hover */
+        }
+
+        .link-button:active {
+            /* Effekt, als würde der Button in die Karte gedrückt */
+            background: rgba(0, 0, 0, 0.2); 
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+            transform: scale(0.98);
+        }
+
+        /* Responsive Anpassungen */
+        @media (max-width: 480px) {
+            .profile-card {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-card">
+    <img src=profil.jpeg alt="Profilbild von Max" class="profile-image">
+
+    <h1>Maximilian Lewald</h1>
+    <p>
+        Links to different accounts.
+    </p>
+
+    <div class="links">
+        <a rel="me" href=https://mastodon.social/@maxlew target="_blank" class="link-button">
+            <i class="fab fa-mastodon"></i> Mastodon
+        </a>
+        <a href=https://telescopius.com/profile/maxi_franzi target="_blank" class="link-button">
+            <i class="fas fa-telescope"></i> Astrophotography
+        </a>
+        <a href="Ihre-Github-URL" target="_blank" class="link-button">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
